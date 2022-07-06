@@ -10,6 +10,8 @@
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="js/bootstrap.min.js"></script>
 
     </head>
     <body>
@@ -23,7 +25,12 @@
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Ingresos</a></li>
                         <li class="nav-item"><a class="nav-link" href="#!">Egresos</a></li>
                         <li class="nav-item"><a class="nav-link" href="#contact">Contacto</a></li>
-                        <li><a class="nav-link scrollto" id="myBtn" href="#login">Login</a></li>
+                        <div class="col-6">
+                            <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal" id="login_modal">
+                            Login 
+                        </button>
+                    </div>
                     </ul>
                 </div>
             </div>
@@ -36,12 +43,12 @@
                 <p class="text-white-50 mb-0">Protocolo Covid-19</p>              
                 <label for="#capmax" class="text-white-50 mb-0">Capacidad Maxima Admitida:</label>
                 
-                <input type="text" maxlength="4" style="width: 40px; display:inline" class="form-control" id="capmax" disabled value="4">
+                <input type="text" maxlength="4" style="width: 40px; display:inline" class="form-control" id="capmax" disabled value="">
                 <br>
 
                 <label for="#capmax" class="text-white-50 mb-3">Personas en local:</label>
                 
-                <input type="text" style="width: 40px; display:inline" class="form-control" id="capmax" disabled value="3">
+                <input type="text" style="width: 40px; display:inline" class="form-control" id="personas_en_local" disabled value="">
                 
             </div>
         </header>
@@ -62,3 +69,174 @@
         
     </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                      <div class="modal-content">
+                          <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Animal</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                              <div class="container">
+
+
+                              <!--Formulario inicio de sesion-->
+      
+
+
+              <div class="container">
+                  <div class="row">
+      
+              <form class="row g-3" method="POST" action="validacionPOST.php" id="formulario_modal">
+                  <div class="col-6 position-relative">
+                      <label for="validationTooltip01" class="form-label"><img src="img/usuario.png" style="height: 20px; width: 20px;">  Usuario</label>
+                      <input type="text" class="form-control" value="" id="usuario">
+                    </div>
+                  <div class="col-6 position-relative">
+                    <label for="validationTooltip01" class="form-label"><img src="img/contraseña.png" style="height: 20px; width: 20px;">Contraseña</label>
+                    <input type="password" class="form-control" id="password">
+                  </div>
+                                  </form>
+                              </div>
+                          </div>
+                          <div class="modal-footer">
+                          <button type="button" id="cancelar_form" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                          <a href="javascript:iniciarsesion()"><button type="button" id="enviar_form" data-bs-dismiss="modal" class="btn btn-dark">Iniciar sesion</button></a>
+                          </div>
+
+
+
+
+
+                              <!--JAVASCRIPT-->
+
+                              <script>
+
+
+                                  //modal iniciar sesion
+
+                                  function abrirmodal(){
+                                  $('#exampleModal').modal('show');
+                                  }
+
+
+
+
+                                  //inicio de sesion AJAX
+
+                                  function iniciarsesion(){
+                                  var usuario=$('#usuario').val()
+                                  var password=$('#password').val()
+                                  
+              
+                                  $.ajax({
+                                      url: "inicio_s.php", //action
+                                      type: "POST", //method
+                                      data: { "usuario": usuario, "password": password},
+                                      dataType: "json",
+                                      success: function (respuesta){
+                                          if (respuesta==1){
+                                              location.href='intranet.php'
+                                          }
+                                          else{
+                                              alert("usuario o contraseña incorrecto")
+                                          }
+                                      }
+                                      
+                  })}
+              
+
+
+
+
+
+
+
+
+                                                      //inicio de sesion AJAX
+
+                                                      function iniciarsesion(){
+                                    var usuario=$('#usuario').val()
+                                    var password=$('#password').val()
+                                    
+                
+                                    $.ajax({
+                                        url: "inicio_s.php", //action
+                                        type: "POST", //method
+                                        data: { "usuario": usuario, "password": password},
+                                        dataType: "json",
+                                        success: function (respuesta){
+                                            if (respuesta==1){
+                                                location.href='intranet.php'
+                                            }
+                                            else{
+                                                alert("usuario o contraseña incorrecto")
+                                            }
+                                        }
+                                        
+                    })}
+
+
+
+
+
+                    function iniciarsesion(){
+
+                    $.ajax({
+                                        url: "inicio_s.php", //action
+                                        type: "POST", //method
+                                        data: { "usuario": usuario, "password": password},
+                                        dataType: "json",
+                                        success: function (respuesta){
+                                            if (respuesta==1){
+                                                location.href='intranet.php'
+                                            }
+                                            else{
+                                                alert("usuario o contraseña incorrecto")
+                                            }
+                                        }
+                                        
+                    })}
+                              </script>
+
+
+
+
+
+
