@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="css/styles.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+</head>
+<body>
+    <select id="id_local">
+        <option value="1">goloteca</option>
+        <option value="2">polirubro</option>
+        <option value="3">supergolo</option>
+        <option value="4">la golosa</option>
+
+    </select>
+
+    <br>
+    <br>
+
+    <a href="javascript:sumarpersona()">Entra persona</a>
+
+    <br>
+    <br>
+    <input type="text" style="width: 50px; display:inline" class="form-control" id="personas_en_local" disabled value="">
+    <br>
+    <br>
+
+    <a href="javascript:restarpersona()">Sale persona</a>
+
+
+
+
+    <script>
+
+
+                    
+                    setInterval(function(){
+                        var id_local = $('#id_local').val();
+                        $.ajax({
+                                    url: "llenarformulario.php", //action
+                                    type: "POST", //method
+                                    data: { "id_local": id_local},
+                                    dataType: "json",
+                                    success: function (respuesta) {
+                                        $.each(respuesta, function (key, value) {
+                                            $('#personas_en_local').val(value.cantidad_personas)
+       
+                                        })
+                                    }
+                })
+                    }, 1000);
+
+
+
+                    
+        
+
+                            var cantidad_personas = $('#personas_en_local').val();
+
+
+function sumarpersona(){
+    var id_local = $('#id_local').val();
+    $.ajax({
+                url: "cantidadpersonasSUM.php", //action
+                type: "POST", //method
+                data: { "id_local": id_local},
+                dataType: "json",})
+                
+
+        }
+
+
+
+        function restarpersona(){
+    var id_local = $('#id_local').val();
+    $.ajax({
+                url: "cantidadpersonasRES.php", //action
+                type: "POST", //method
+                data: { "id_local": id_local},
+                dataType: "json",})
+                
+
+        }
+    </script>
+</body>
+</html>
